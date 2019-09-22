@@ -19,6 +19,11 @@ include $(CLEAR_VARS)
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 
+ifeq ($(TARGET_SCREEN_WIDTH),)
+TARGET_SCREEN_WIDTH:=1080
+$(warning TARGET_SCREEN_WIDTH not set, using 1080.)
+endif
+
 ifeq ($(shell test $(TARGET_SCREEN_WIDTH) -gt 1080; echo $$?),0)
 LOCAL_RESOURCE_DIR += $(LOCAL_PATH)/res_1440p/common
 ifeq ($(PRODUCT_SIZE), mini)
